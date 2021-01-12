@@ -1,4 +1,4 @@
-import {State} from 'react-native-gesture-handler';
+export const SAVESIGNUP = 'save_sign_up';
 
 const initialState = {
   TotalAmount: 10,
@@ -7,8 +7,10 @@ const initialState = {
 
 const DatabaseReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 1:
+    case SAVESIGNUP:
       state.TotalAmount = 20;
+      console.log('actinos');
+      console.log(action.signupData);
       return {
         TotalAmount: state.TotalAmount,
         Salary: state.Salary,
