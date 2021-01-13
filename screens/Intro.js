@@ -211,7 +211,6 @@ export default function intro() {
               fullName: FullName,
             };
 
-            console.log(Data);
             dispatch({
               type: SAVESIGNUP,
               signupData: Data,
