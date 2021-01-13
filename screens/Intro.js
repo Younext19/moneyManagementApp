@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {SAVESIGNUP} from './Reducers/DataReducer';
 import {launchCamera} from 'react-native-image-picker';
 import Colors from '../Colors';
+import {useNavigation} from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export default function intro() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function intro() {
   const [FullName, setFullName] = useState('');
   const [avatarImage, setavatarImage] = useState('');
   const [MonthlyIncome, setMonthlyIncome] = useState('');
-
+  const navigations = useNavigation();
   const Darkest = Colors.DarkestColor;
   const Darker = Colors.DarkerColor;
   const Green = Colors.GreenColor;
@@ -215,6 +216,7 @@ export default function intro() {
               type: SAVESIGNUP,
               signupData: Data,
             });
+            navigations.push('Main');
           }}>
           <View style={{alignItems: 'center'}}>
             <View style={{flexDirection: 'row'}}>
@@ -224,7 +226,7 @@ export default function intro() {
                   color: 'white',
                   fontWeight: 'bold',
                 }}>
-                Enregistrez
+                Enregistrer
               </Text>
             </View>
           </View>
