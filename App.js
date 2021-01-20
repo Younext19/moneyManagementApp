@@ -7,14 +7,14 @@ import Intro from './screens/Intro';
 
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/es/integration/react';
-import store, {peristedStore} from './screens/Reducers/store';
+import store, {persistedStore} from './screens/Reducers/store';
 
 const Stack = createStackNavigator();
 const App = () => {
   // TO CHANGE INTRO TO BOTTOM NAV BAR
   return (
     <Provider store={store}>
-      <PersistGate persistor={peristedStore} loading={null}>
+      <PersistGate persistor={persistedStore} loading={null}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
