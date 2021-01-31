@@ -313,7 +313,7 @@ export default function expenses() {
         <View style={{flex: 1}}>
           <TextInput
             style={{
-              borderWidth: 1,
+              borderBottomWidth: 1,
               borderColor: 'black',
               marginHorizontal: 10,
               marginVertical: 2,
