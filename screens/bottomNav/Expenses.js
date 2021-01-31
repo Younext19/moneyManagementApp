@@ -230,7 +230,6 @@ export default function expenses() {
             width: '100%',
             flexDirection: 'row',
             borderRadius: 12,
-            backgroundColor: 'white',
             paddingHorizontal: 10,
           }}>
           <View
@@ -239,16 +238,16 @@ export default function expenses() {
               flex: 1,
               backgroundColor: 'white',
               borderRightColor: 'grey',
-              borderRightWidth: 0.5,
               borderTopLeftRadius: 10,
+              borderWidth: 0.5,
+              borderColor: 'black',
+              backgroundColor: filterBy === 'Expenses' ? '#1e5f74' : 'white',
             }}>
             <TouchableOpacity
               style={{
-                borderTopLeftRadius: 10,
                 alignItems: 'center',
                 height: '100%',
                 justifyContent: 'center',
-                backgroundColor: filterBy === 'Expenses' ? '#1e5f74' : 'white',
               }}
               onPress={() => {
                 setfilterBy('Expenses');
@@ -268,14 +267,15 @@ export default function expenses() {
               flex: 1,
               backgroundColor: 'white',
               borderTopRightRadius: 10,
+              backgroundColor: filterBy === 'Income' ? '#1e5f74' : 'white',
+              borderWidth: 0.5,
+              borderColor: 'black',
             }}>
             <TouchableOpacity
               style={{
                 alignItems: 'center',
-                borderTopRightRadius: 10,
                 height: '100%',
                 justifyContent: 'center',
-                backgroundColor: filterBy === 'Income' ? '#1e5f74' : 'white',
               }}
               onPress={() => {
                 setfilterBy('Income');
