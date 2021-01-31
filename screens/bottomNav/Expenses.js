@@ -3,41 +3,144 @@ import {View, Text, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import images from '../images';
+import {useState} from 'react';
 
+const {fitness, market, shopping} = images;
+
+const TotalMoney = [
+  {
+    id: '1',
+    TotalWaste: '34000',
+    logo: fitness,
+    title: 'Fitness',
+  },
+  {
+    id: '2',
+    TotalWaste: '25000',
+    logo: market,
+    title: 'Market',
+  },
+  {
+    id: '3',
+    TotalWaste: '45300',
+    logo: shopping,
+    title: 'Shopping',
+  },
+];
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    title: 'Fitness',
+    imgName: fitness,
+    comment: '1 mois Hdid',
+    date: '25/03/2014',
+    money: 1800,
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    title: 'Market',
+    imgName: market,
+    comment: '2 Khobz',
+    date: '25/03/2014',
+    money: 20,
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    title: 'Shopping',
+    imgName: shopping,
+    comment: 'asics',
+    date: '25/03/2014',
+    money: 8500,
   },
 ];
 
 export default function expenses() {
+  const [filterBy, setfilterBy] = useState('Expenses');
+  const HorizontList = ({item}) => {
+    return (
+      <View
+        style={{
+          width: 170,
+          height: 100,
+          margin: 10,
+          borderRadius: 10,
+          padding: 10,
+          backgroundColor: 'white',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 6,
+          },
+          shadowOpacity: 0.39,
+          shadowRadius: 8.3,
+
+          elevation: 8,
+        }}>
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.title}</Text>
+
+        <Text style={{fontSize: 16, fontStyle: 'italic'}}>
+          {item.TotalWaste}
+        </Text>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+          }}>
+          <Image
+            source={item.logo}
+            style={{
+              width: 35,
+              height: 35,
+            }}
+          />
+        </View>
+      </View>
+    );
+  };
   const renderItem = ({item}) => {
     return (
       <View
         style={{
-          backgroundColor: 'grey',
           borderRadius: 7,
-          marginVertical: 8,
-          marginHorizontal: 8,
-          justifyContent: 'center',
-          height: 60,
+          marginVertical: 6,
+          marginHorizontal: 12,
+          height: 70,
           padding: 8,
+          alignItems: 'center',
+          backgroundColor: '#fff',
+          flexDirection: 'row',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 8,
+          },
+          shadowOpacity: 0.46,
+          shadowRadius: 11.14,
+
+          elevation: 4,
         }}>
-        <Text style={{fontSize: 30}}>{item.title}</Text>
+        <Image
+          source={item.imgName}
+          style={{
+            width: 35,
+            height: 35,
+          }}
+        />
+        <View style={{marginLeft: 5}}>
+          <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.comment}</Text>
+          <Text style={{fontSize: 16, fontStyle: 'italic'}}>{item.date}</Text>
+        </View>
+        <View
+          style={{justifyContent: 'flex-end', alignItems: 'flex-end', flex: 1}}>
+          <Text style={{fontSize: 18}}>{item.money} DZD</Text>
+        </View>
       </View>
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#ecf0f1'}}>
       <View style={{height: 130}}>
         <View
           style={{
@@ -55,18 +158,17 @@ export default function expenses() {
               flex: 1,
               alignItems: 'center',
               padding: 10,
-              borderWidth: 2,
-              backgroundColor: 'purple',
               flexDirection: 'row',
+              backgroundColor: 'white',
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
-                height: 3,
+                height: 8,
               },
-              shadowOpacity: 0.29,
-              shadowRadius: 4.65,
+              shadowOpacity: 0.46,
+              shadowRadius: 11.14,
 
-              elevation: 7,
+              elevation: 17,
             }}>
             <View
               style={{
@@ -101,54 +203,94 @@ export default function expenses() {
       </View>
       <View
         style={{
-          backgroundColor: 'green',
           flex: 1,
           margin: 15,
           borderRadius: 12,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 9,
-          },
-          shadowOpacity: 0.5,
-          shadowRadius: 12.35,
-
-          elevation: 19,
         }}>
+        <View style={{width: '100%', height: 150}}>
+          <Text style={{fontSize: 20, marginLeft: 15, fontWeight: 'bold'}}>
+            Total Waste
+          </Text>
+          <FlatList
+            data={TotalMoney}
+            renderItem={HorizontList}
+            horizontal={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+        <Text style={{fontSize: 20, marginLeft: 15, fontWeight: 'bold'}}>
+          Track Your Expenses
+        </Text>
+        <View style={{marginVertical: 2}} />
         <View
           style={{
             height: 50,
-            backgroundColor: 'grey',
             width: '100%',
             flexDirection: 'row',
             borderRadius: 12,
+            backgroundColor: 'white',
+            paddingHorizontal: 10,
           }}>
-          <View style={{width: '50%', flex: 1}}>
+          <View
+            style={{
+              width: '50%',
+              flex: 1,
+              backgroundColor: 'white',
+              borderRightColor: 'grey',
+              borderRightWidth: 0.5,
+              borderTopLeftRadius: 10,
+            }}>
             <TouchableOpacity
               style={{
-                backgroundColor: 'red',
                 borderTopLeftRadius: 10,
                 alignItems: 'center',
                 height: '100%',
                 justifyContent: 'center',
+                backgroundColor: filterBy === 'Expenses' ? '#1e5f74' : 'white',
+              }}
+              onPress={() => {
+                setfilterBy('Expenses');
               }}>
-              <Text>Expenses</Text>
+              <Text
+                style={{
+                  color: filterBy === 'Expenses' ? 'white' : 'black',
+                  fontWeight: 'bold',
+                }}>
+                Expenses
+              </Text>
             </TouchableOpacity>
           </View>
-          <View style={{width: '50%', flex: 1}}>
+          <View
+            style={{
+              width: '50%',
+              flex: 1,
+              backgroundColor: 'white',
+              borderTopRightRadius: 10,
+            }}>
             <TouchableOpacity
               style={{
-                backgroundColor: 'yellow',
                 alignItems: 'center',
-                borderTopRightRadius: 8,
+                borderTopRightRadius: 10,
                 height: '100%',
                 justifyContent: 'center',
+                backgroundColor: filterBy === 'Income' ? '#1e5f74' : 'white',
+              }}
+              onPress={() => {
+                setfilterBy('Income');
               }}>
-              <Text>Expenses</Text>
+              <Text
+                style={{
+                  color: filterBy === 'Income' ? 'white' : 'black',
+                  fontWeight: 'bold',
+                }}>
+                Income
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{backgroundColor: 'blue', flex: 1}}>
+        <View style={{flex: 1}}>
           <FlatList
             data={DATA}
             renderItem={renderItem}
