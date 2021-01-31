@@ -2,7 +2,11 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  FlatList,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import images from '../images';
 import {useState} from 'react';
 
@@ -47,6 +51,22 @@ const DATA = [
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Shopping',
+    imgName: shopping,
+    comment: 'asics',
+    date: '25/03/2014',
+    money: 8500,
+  },
+  {
+    id: '58694a0f-3d1-471f-bd96-145571e29d72',
+    title: 'Shopping',
+    imgName: shopping,
+    comment: 'asics',
+    date: '25/03/2014',
+    money: 8500,
+  },
+  {
+    id: '586940f-3da1-471f-bd96-145571e29d72',
     title: 'Shopping',
     imgName: shopping,
     comment: 'asics',
@@ -291,6 +311,17 @@ export default function expenses() {
           </View>
         </View>
         <View style={{flex: 1}}>
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: 'black',
+              marginHorizontal: 10,
+              marginVertical: 2,
+              height: 40,
+              borderRadius: 5,
+            }}
+            placeholder={'Search here'}
+          />
           <FlatList
             data={DATA}
             renderItem={renderItem}
