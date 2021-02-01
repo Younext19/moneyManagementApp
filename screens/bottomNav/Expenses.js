@@ -1,15 +1,20 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {
+  TextInput,
+  View,
+  Text,
+  Image,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-import {
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
 import images from '../images';
 import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const {fitness, market, shopping} = images;
 
@@ -77,6 +82,8 @@ const DATA = [
 ];
 
 export default function expenses() {
+  const navigation = useNavigation();
+
   const [filterBy, setfilterBy] = useState('Expenses');
   const HorizontList = ({item}) => {
     return (
@@ -122,26 +129,7 @@ export default function expenses() {
   };
   const renderItem = ({item}) => {
     return (
-      <View
-        style={{
-          borderRadius: 7,
-          marginVertical: 6,
-          marginHorizontal: 12,
-          height: 70,
-          padding: 8,
-          alignItems: 'center',
-          backgroundColor: '#fff',
-          flexDirection: 'row',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 8,
-          },
-          shadowOpacity: 0.46,
-          shadowRadius: 11.14,
-
-          elevation: 4,
-        }}>
+      <View style={styles.userCardView}>
         <Image
           source={item.imgName}
           style={{
@@ -171,24 +159,7 @@ export default function expenses() {
             borderRadius: 7,
             paddingLeft: 5,
           }}>
-          <View
-            style={{
-              borderRadius: 7,
-              flex: 1,
-              alignItems: 'center',
-              padding: 10,
-              flexDirection: 'row',
-              backgroundColor: 'white',
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 8,
-              },
-              shadowOpacity: 0.46,
-              shadowRadius: 11.14,
-
-              elevation: 17,
-            }}>
+          <View style={styles.imgAndName}>
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <View
@@ -249,25 +220,14 @@ export default function expenses() {
           Track Your Expenses
         </Text>
         <View style={{marginVertical: 2}} />
-        <View
-          style={{
-            height: 50,
-            width: '100%',
-            flexDirection: 'row',
-            borderRadius: 12,
-            paddingHorizontal: 10,
-          }}>
+        <View style={styles.trackExpensesView}>
           <View
-            style={{
-              width: '50%',
-              flex: 1,
-              backgroundColor: 'white',
-              borderRightColor: 'grey',
-              borderTopLeftRadius: 10,
-              borderWidth: 0.5,
-              borderColor: 'black',
-              backgroundColor: filterBy === 'Expenses' ? '#133b5c' : 'white',
-            }}>
+            style={[
+              styles.expensesAndIncomeButtons,
+              {
+                backgroundColor: filterBy === 'Expenses' ? '#133b5c' : 'white',
+              },
+            ]}>
             <TouchableOpacity
               style={{
                 alignItems: 'center',
@@ -293,9 +253,9 @@ export default function expenses() {
               flex: 1,
               backgroundColor: 'white',
               borderTopRightRadius: 10,
-              backgroundColor: filterBy === 'Income' ? '#133b5c' : 'white',
               borderWidth: 0.5,
               borderColor: 'black',
+              backgroundColor: filterBy === 'Income' ? '#133b5c' : 'white',
             }}>
             <TouchableOpacity
               style={{
@@ -318,49 +278,17 @@ export default function expenses() {
           </View>
         </View>
         <View style={{flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginVertical: 5,
-              marginTop: 10,
-              marginHorizontal: 10,
-            }}>
-            <View
-              style={{
-                padding: 6,
-                borderColor: 'black',
-                backgroundColor: '#FFF',
-                height: 40,
-                borderRadius: 8,
-                width: 300,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 3,
-                },
-                shadowOpacity: 0.29,
-                shadowRadius: 4.65,
-
-                elevation: 4,
-              }}>
+          <View style={styles.searchAndPlusView}>
+            <View style={styles.searchBarView}>
               <TextInput style={{padding: 3}} placeholder={'Search here'} />
               <View style={{alignItems: 'flex-end', flex: 1}}>
                 <Fontisto name={'search'} size={20} color={'grey'} />
               </View>
             </View>
             <TouchableOpacity
-              style={{
-                alignSelf: 'flex-end',
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: '#1e5f74',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginLeft: 18,
+              style={styles.plusButton}
+              onPress={() => {
+                navigation.navigate('AddExpense');
               }}>
               <Text style={{fontSize: 30, color: 'white'}}>+</Text>
             </TouchableOpacity>
@@ -375,3 +303,93 @@ export default function expenses() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  plusButton: {
+    alignSelf: 'flex-end',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1e5f74',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 18,
+  },
+  searchBarView: {
+    padding: 6,
+    borderColor: 'black',
+    backgroundColor: '#FFF',
+    height: 40,
+    borderRadius: 8,
+    width: 300,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 4,
+  },
+  searchAndPlusView: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    marginTop: 10,
+    marginHorizontal: 10,
+  },
+  expensesAndIncomeButtons: {
+    width: '50%',
+    flex: 1,
+    backgroundColor: 'white',
+    borderRightColor: 'grey',
+    borderTopLeftRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'black',
+  },
+  trackExpensesView: {
+    height: 50,
+    width: '100%',
+    flexDirection: 'row',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+  },
+  userCardView: {
+    borderRadius: 7,
+    marginVertical: 6,
+    marginHorizontal: 12,
+    height: 70,
+    padding: 8,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 4,
+  },
+  imgAndName: {
+    borderRadius: 7,
+    flex: 1,
+    alignItems: 'center',
+    padding: 10,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+    elevation: 17,
+  },
+});
