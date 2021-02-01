@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -15,7 +16,6 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import images from '../images';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const {fitness, market, shopping} = images;
 

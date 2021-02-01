@@ -38,14 +38,18 @@ export default function AddExpense() {
               ? item.categ.substring(0, 5) + '...'
               : item.categ}
           </Text>
-          <Image
-            source={item.imgName}
-            style={{
-              width: 25,
-              height: 25,
-              margin: 3,
-            }}
-          />
+          {item.imgName !== null ? (
+            <Image
+              source={item.imgName}
+              style={{
+                width: 25,
+                height: 25,
+                margin: 3,
+              }}
+            />
+          ) : (
+            <View />
+          )}
         </TouchableOpacity>
       </View>
     );
