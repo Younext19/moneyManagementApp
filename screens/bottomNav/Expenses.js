@@ -15,6 +15,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import images from '../images';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const {fitness, market, shopping} = images;
 
@@ -151,51 +152,58 @@ export default function expenses() {
   return (
     <View style={{flex: 1, backgroundColor: '#ece2e1'}}>
       <View style={{height: 160}}>
-        <View
-          style={{
-            height: 130,
-            margin: 15,
-            marginTop: 40,
-            borderRadius: 7,
-            paddingLeft: 5,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            console.log('test');
+            navigation.push('profileDetails');
           }}>
-          <View style={styles.imgAndName}>
-            <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View
-                  style={{
-                    height: 60,
-                    width: 60,
-                  }}>
-                  <Image
-                    source={require('../../Assets/images/ilies.jpg')}
+          <View
+            style={{
+              height: 130,
+              margin: 15,
+              marginTop: 40,
+              borderRadius: 7,
+              paddingLeft: 5,
+            }}>
+            <View style={styles.imgAndName}>
+              <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <View
                     style={{
-                      position: 'absolute',
                       height: 60,
                       width: 60,
-                      borderRadius: 30,
-                    }}
-                  />
+                    }}>
+                    <Image
+                      source={require('../../Assets/images/ilies.jpg')}
+                      style={{
+                        position: 'absolute',
+                        height: 60,
+                        width: 60,
+                        borderRadius: 30,
+                      }}
+                    />
+                  </View>
+                  <Text
+                    style={{marginLeft: 10, fontWeight: 'bold', fontSize: 20}}>
+                    Ilies
+                  </Text>
                 </View>
                 <Text
-                  style={{marginLeft: 10, fontWeight: 'bold', fontSize: 20}}>
-                  Ilies
+                  style={{fontSize: 20, fontStyle: 'italic', marginTop: 10}}>
+                  100000 DZD
                 </Text>
               </View>
-              <Text style={{fontSize: 20, fontStyle: 'italic', marginTop: 10}}>
-                100000 DZD
-              </Text>
-            </View>
-            <View
-              style={{
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end',
-                flex: 1,
-              }}>
-              <Text>ANIMATION</Text>
+              <View
+                style={{
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-end',
+                  flex: 1,
+                }}>
+                <Text>ANIMATION</Text>
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </View>
       <View
         style={{

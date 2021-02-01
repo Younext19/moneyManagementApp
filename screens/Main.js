@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Expenses from './bottomNav/Expenses';
+
 import Profile from './bottomNav/Profile';
 import navigation from './bottomNav/Navigation';
 
