@@ -55,47 +55,23 @@ export default function AddExpense() {
     );
   };
   const Categories = [
-    {categ: 'Food', imgName: fitness},
-    {categ: 'drink', imgName: market},
-    {categ: 'fitness', imgName: fitness},
-    {categ: 'party', imgName: shopping},
-    {categ: 'weed', imgName: market},
-    {categ: 'market', imgName: market},
+    {categ: 'Mina', imgName: fitness},
+    {categ: 'fruity', imgName: market},
+    {categ: 'Rouge', imgName: fitness},
+    {categ: 'Dell', imgName: shopping},
+    {categ: 'NY', imgName: market},
+    {categ: 'S.Jobs', imgName: market},
+    {categ: 'Beer', imgName: market},
   ];
   return (
     <View style={{flex: 1, backgroundColor: '#ece2e1'}}>
       <View style={{margin: 20, flex: 1, padding: 10}}>
         <View
           style={{
+            marginTop: 10,
             backgroundColor: 'white',
             width: '100%',
-            height: 150,
-            borderRadius: 6,
-            padding: 5,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 3,
-            },
-            shadowOpacity: 0.29,
-            shadowRadius: 4.65,
-
-            elevation: 7,
-          }}>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Category : </Text>
-          <FlatList
-            data={Categories}
-            renderItem={renderItem}
-            numColumns={3}
-            keyExtractor={(item) => item.categ}
-          />
-        </View>
-        <View
-          style={{
-            marginTop: 30,
-            backgroundColor: 'white',
-            width: '100%',
-            height: 100,
+            height: 600,
             borderRadius: 6,
             padding: 5,
             shadowColor: '#000',
@@ -107,13 +83,28 @@ export default function AddExpense() {
             shadowRadius: 4.65,
             elevation: 7,
           }}>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Note :</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Note</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
               placeholder={'Achetez 2 pain'}
             />
           </View>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Prix</Text>
+          <View style={{padding: 10}}>
+            <TextInput
+              style={{borderWidth: 1, borderRadius: 7, padding: 7}}
+              placeholder={'350'}
+            />
+          </View>
+
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Category </Text>
+          <FlatList
+            data={Categories}
+            renderItem={renderItem}
+            numColumns={3}
+            keyExtractor={(item) => item.categ}
+          />
         </View>
       </View>
     </View>
