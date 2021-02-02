@@ -83,14 +83,21 @@ export default function AddExpense() {
             shadowRadius: 4.65,
             elevation: 7,
           }}>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Note</Text>
+          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Subject</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
               placeholder={'Achetez 2 pain'}
             />
           </View>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Prix</Text>
+          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Description</Text>
+          <View style={{padding: 10}}>
+            <TextInput
+              style={{borderWidth: 1, borderRadius: 7, padding: 7}}
+              placeholder={'350'}
+            />
+          </View>
+          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Prix</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
@@ -98,13 +105,32 @@ export default function AddExpense() {
             />
           </View>
 
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Category </Text>
+          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Category </Text>
           <FlatList
             data={Categories}
             renderItem={renderItem}
             numColumns={3}
             keyExtractor={(item) => item.categ}
           />
+          <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              justifyContent: 'space-between',
+            }}>
+            <View style={{alignItems: 'flex-start'}}>
+              <TouchableOpacity
+                style={{borderWidth: 1, backgroundColor: 'red'}}>
+                <Text>annuler</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{alignItems: 'flex-end'}}>
+              <TouchableOpacity
+                style={{borderWidth: 1, backgroundColor: 'green'}}>
+                <Text>Valider</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </View>
     </View>
