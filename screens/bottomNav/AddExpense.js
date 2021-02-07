@@ -11,9 +11,13 @@ import images from '../images';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+
 const {fitness, market, shopping} = images;
 
 export default function AddExpense() {
+  const navigation = useNavigation();
+
   const [selectedCateg, setselectedCateg] = useState('none');
   const [selectedType, setselectedType] = useState('Expenses');
   const renderItem = ({item}) => {
@@ -93,7 +97,7 @@ export default function AddExpense() {
               width: '100%',
               height: 70,
             }}>
-            <Text style={{fontSize: 20, fontStyle: 'italic'}}>Choose Type</Text>
+            <Text style={{fontSize: 20}}>Choose Type</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -107,7 +111,6 @@ export default function AddExpense() {
                   height: 40,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderWidth: 1,
                   borderRadius: 8,
 
                   backgroundColor:
@@ -130,11 +133,10 @@ export default function AddExpense() {
                   height: 40,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderWidth: 1,
                   borderRadius: 8,
                   marginLeft: 50,
                   backgroundColor:
-                    selectedType === 'Income' ? '#1e5f74' : 'white',
+                    selectedType === 'Income' ? '#1e5f74' : '#e7e6e1',
                 }}
                 onPress={() => {
                   setselectedType('Income');
@@ -149,23 +151,21 @@ export default function AddExpense() {
               </TouchableOpacity>
             </View>
           </View>
-          <Text style={{fontSize: 20, fontStyle: 'italic', marginTop: 5}}>
-            Subject
-          </Text>
+          <Text style={{fontSize: 20, marginTop: 5}}>Subject</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
               placeholder={'Achetez 2 pain'}
             />
           </View>
-          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Description</Text>
+          <Text style={{fontSize: 20}}>Description</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
               placeholder={'350'}
             />
           </View>
-          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Prix</Text>
+          <Text style={{fontSize: 20}}>Prix</Text>
           <View style={{padding: 10}}>
             <TextInput
               style={{borderWidth: 1, borderRadius: 7, padding: 7}}
@@ -173,7 +173,7 @@ export default function AddExpense() {
             />
           </View>
 
-          <Text style={{fontSize: 20, fontStyle: 'italic'}}>Category </Text>
+          <Text style={{fontSize: 20}}>Category </Text>
           <FlatList
             data={Categories}
             renderItem={renderItem}
@@ -197,8 +197,12 @@ export default function AddExpense() {
                 justifyContent: 'center',
                 borderRadius: 8,
               }}>
-              <TouchableOpacity style={{}}>
-                <Text style={{fontSize: 20}}>Annuler</Text>
+              <TouchableOpacity
+                style={{}}
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Text style={{fontSize: 20, color: 'white'}}>Annuler</Text>
               </TouchableOpacity>
             </View>
             <View
@@ -210,8 +214,13 @@ export default function AddExpense() {
                 justifyContent: 'center',
                 borderRadius: 8,
               }}>
-              <TouchableOpacity style={{}}>
-                <Text style={{fontSize: 20}}>Valider</Text>
+              <TouchableOpacity
+                style={{}}
+                onPress={() => {
+                  console.log('hna ajouter some data f reducer');
+                  navigation.goBack();
+                }}>
+                <Text style={{fontSize: 20, color: 'white'}}>Valider</Text>
               </TouchableOpacity>
             </View>
           </View>
