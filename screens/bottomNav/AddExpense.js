@@ -21,7 +21,8 @@ export default function AddExpense() {
 
   const [selectedCateg, setselectedCateg] = useState('none');
   const [selectedType, setselectedType] = useState('Expenses');
-
+  const [Title, setTitle] = useState('');
+  const [Budget, setBudget] = useState('');
   const Categories = [
     {id: 7, categ: 'Mina', imgName: fitness},
     {id: 6, categ: 'fruity', imgName: market},
@@ -138,6 +139,7 @@ export default function AddExpense() {
             padding: 10,
           }}
           placeholder={'Achetez 2 Pain'}
+          onChangeText={(v) => setTitle(v)}
         />
 
         <Text style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>
@@ -152,6 +154,7 @@ export default function AddExpense() {
             padding: 10,
           }}
           placeholder={'4500'}
+          onChangeText={(v) => setBudget(v)}
         />
         <Text style={{fontSize: 25, fontWeight: 'bold'}}>Category</Text>
         <View
@@ -185,7 +188,6 @@ export default function AddExpense() {
             <TouchableOpacity
               style={{}}
               onPress={() => {
-                console.log('hna ajouter some data f reducer');
                 navigation.goBack();
               }}>
               <Text style={{fontSize: 20, color: 'white'}}>Annuler</Text>
@@ -204,7 +206,18 @@ export default function AddExpense() {
               style={{}}
               onPress={() => {
                 console.log('hna ajouter some data f reducer');
-                navigation.goBack();
+                const Data = {
+                  Title: Title,
+                  Budget: Budget,
+                  Category: selectedCateg,
+                  Type: selectedType,
+                };
+                console.log(Data);
+                if (Data.Type === 'Expenses') {
+                  //DISPATCH TO EXPENSES
+                } else {
+                }
+                // navigation.goBack();
               }}>
               <Text style={{fontSize: 20, color: 'white'}}>Valider</Text>
             </TouchableOpacity>
