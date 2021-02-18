@@ -11,27 +11,28 @@ const initialState = {
 const DatabaseReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_EXPENSES:
-      console.log(state);
-      if (state.Expenses.length === 0) {
-        state.Expenses.push(action.ExpensesData);
+      if (state.Expenses === 0 || state.Expenses === undefined) {
+        state.Expenses = [action.ExpensesData];
       } else {
-        state.Expenses = action.ExpensesData;
+        state.Expenses.push(action.ExpensesData);
       }
       return {
         TotalAmount: state.TotalAmount,
         Salary: state.Salary,
         Expenses: state.Expenses,
+        Incomes: state.Incomes,
       };
     case ADD_INCOME:
-      console.log(action);
-      if (state.Expenses.length === 0) {
-        state.Incomes.push(action.IncomeData);
+      if (state.Incomes === 0 || state.Incomes === undefined) {
+        state.Incomes = [action.IncomeData];
       } else {
-        state.Incomes = action.IncomeData;
+        state.Incomes.push(action.IncomeData);
       }
       return {
         TotalAmount: state.TotalAmount,
         Salary: state.Salary,
+        Expenses: state.Expenses,
+        Incomes: state.Incomes,
       };
     case SAVESIGNUP:
       state.TotalAmount = 20;
@@ -40,6 +41,8 @@ const DatabaseReducer = (state = initialState, action) => {
       return {
         TotalAmount: state.TotalAmount,
         Salary: state.Salary,
+        Expenses: state.Expenses,
+        Incomes: state.Incomes,
       };
     default:
       return state;

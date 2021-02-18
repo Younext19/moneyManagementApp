@@ -39,51 +39,56 @@ const TotalMoney = [
     title: 'Shopping',
   },
 ];
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Fitness',
-    imgName: fitness,
-    comment: '1 mois Hdid',
-    date: '25/03/2014',
-    money: 1800,
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Market',
-    imgName: market,
-    comment: '2 Khobz',
-    date: '25/03/2014',
-    money: 20,
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Shopping',
-    imgName: shopping,
-    comment: 'asics',
-    date: '25/03/2014',
-    money: 8500,
-  },
-  {
-    id: '58694a0f-3d1-471f-bd96-145571e29d72',
-    title: 'Shopping',
-    imgName: shopping,
-    comment: 'asics',
-    date: '25/03/2014',
-    money: 8500,
-  },
-  {
-    id: '586940f-3da1-471f-bd96-145571e29d72',
-    title: 'Shopping',
-    imgName: shopping,
-    comment: 'asics',
-    date: '25/03/2014',
-    money: 8500,
-  },
-];
 
 export default function expenses() {
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Fitness',
+      imgName: fitness,
+      comment: '1 mois Hdid',
+      date: '25/03/2014',
+      money: 1800,
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Market',
+      imgName: market,
+      comment: '2 Khobz',
+      date: '25/03/2014',
+      money: 20,
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Shopping',
+      imgName: shopping,
+      comment: 'asics',
+      date: '25/03/2014',
+      money: 8500,
+    },
+    {
+      id: '58694a0f-3d1-471f-bd96-145571e29d72',
+      title: 'Shopping',
+      imgName: shopping,
+      comment: 'asics',
+      date: '25/03/2014',
+      money: 8500,
+    },
+    {
+      id: '586940f-3da1-471f-bd96-145571e29d72',
+      title: 'Shopping',
+      imgName: shopping,
+      comment: 'asics',
+      date: '25/03/2014',
+      money: 8500,
+    },
+  ];
+
   const navigation = useNavigation();
+
+  const state = useSelector((state) => state.DataReducer);
+  console.log('Data Reducer');
+  console.log(state);
 
   const [filterBy, setfilterBy] = useState('Expenses');
   const HorizontList = ({item}) => {
@@ -129,17 +134,19 @@ export default function expenses() {
     );
   };
   const renderItem = ({item}) => {
+    console.log('Zebi');
+    console.log(item);
     return (
       <View style={styles.userCardView}>
-        <Image
+        {/* <Image
           source={item.imgName}
           style={{
             width: 35,
             height: 35,
           }}
-        />
+        /> */}
         <View style={{marginLeft: 5}}>
-          <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.comment}</Text>
+          <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.Title}</Text>
           <Text style={{fontSize: 16, fontStyle: 'italic'}}>{item.date}</Text>
         </View>
         <View
@@ -302,7 +309,7 @@ export default function expenses() {
             </TouchableOpacity>
           </View>
           <FlatList
-            data={DATA}
+            data={filterBy === 'Expenses' ? state.Expenses : state.Incomes}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
           />

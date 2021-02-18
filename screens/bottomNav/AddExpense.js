@@ -210,7 +210,18 @@ export default function AddExpense() {
               style={{}}
               onPress={() => {
                 console.log('hna ajouter some data f reducer');
+                function uuidv4() {
+                  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+                    /[xy]/g,
+                    function (c) {
+                      var r = (Math.random() * 16) | 0,
+                        v = c == 'x' ? r : (r & 0x3) | 0x8;
+                      return v.toString(16);
+                    },
+                  );
+                }
                 const Data = {
+                  id: uuidv4(),
                   Title: Title,
                   Budget: Budget,
                   Category: selectedCateg,
