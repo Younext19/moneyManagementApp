@@ -52,8 +52,10 @@ export default function AddExpense() {
             backgroundColor: selectedCateg === item.categ ? '#78e08f' : 'white',
           }}
           onPress={() => {
-            console.log(item.categ);
-            setselectedCateg(item.categ);
+            console.log('zebi');
+            console.log(item);
+            console.log({imgName: item.imgName, categ: item.categ});
+            setselectedCateg({imgName: item.imgName, categ: item.categ});
           }}>
           <Text style={{fontSize: 20}}>{item.categ}</Text>
           <Image
@@ -150,6 +152,7 @@ export default function AddExpense() {
           Budget
         </Text>
         <TextInput
+          keyboardType={'decimal-pad'}
           style={{
             borderWidth: 1,
             borderColor: '#564654',
@@ -225,6 +228,7 @@ export default function AddExpense() {
                   Title: Title,
                   Budget: Budget,
                   Category: selectedCateg,
+
                   Type: selectedType,
                 };
                 console.log(Data);
