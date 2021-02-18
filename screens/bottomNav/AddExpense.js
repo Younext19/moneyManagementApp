@@ -7,17 +7,21 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+
 import images from '../images';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {ADD_EXPENSES, ADD_INCOME} from '../Reducers/DataReducer';
 
 const {fitness, market, shopping} = images;
 
 export default function AddExpense() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [selectedCateg, setselectedCateg] = useState('none');
   const [selectedType, setselectedType] = useState('Expenses');
@@ -215,7 +219,16 @@ export default function AddExpense() {
                 console.log(Data);
                 if (Data.Type === 'Expenses') {
                   //DISPATCH TO EXPENSES
+                  dispatch({
+                    type: ADD_EXPENSES,
+                    ExpensesData: Data,
+                  });
                 } else {
+                  // DISPATCH TO INCOME
+                  dispatch({
+                    type: ADD_INCOME,
+                    IncomeData: Data,
+                  });
                 }
                 // navigation.goBack();
               }}>
