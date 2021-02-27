@@ -32,11 +32,8 @@ export default function intro() {
         chooseFromLibraryButtonTitle: 'Choose photo from library',
       },
       (response) => {
-        console.log('Response = ', response);
-        if (response.didCancel) {
-          // console.log('User cancelled image picker');
-        } else if (response.error) {
-          // console.log('Image Picker Error: ', response.error);
+        if (response.error) {
+          alert(response.error);
         } else {
           setavatarImage({
             uri: response,
@@ -46,7 +43,6 @@ export default function intro() {
       },
     );
   }
-
   return (
     <View
       style={{
