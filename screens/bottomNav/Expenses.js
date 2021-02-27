@@ -134,24 +134,24 @@ export default function expenses() {
     );
   };
   const renderItem = ({item}) => {
-    console.log('Zebi');
+    console.log('zemaèi');
     console.log(item);
     return (
       <View style={styles.userCardView}>
-        {/* <Image
-          source={item.imgName}
+        <Image
+          source={item.Category.imgName}
           style={{
             width: 35,
             height: 35,
           }}
-        /> */}
+        />
         <View style={{marginLeft: 5}}>
           <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.Title}</Text>
-          <Text style={{fontSize: 16, fontStyle: 'italic'}}>{item.date}</Text>
+          <Text style={{fontSize: 16, fontStyle: 'italic'}}>{item.Date}</Text>
         </View>
         <View
           style={{justifyContent: 'flex-end', alignItems: 'flex-end', flex: 1}}>
-          <Text style={{fontSize: 18}}>{item.money} DZD</Text>
+          <Text style={{fontSize: 18}}>{item.Budget} DZD</Text>
         </View>
       </View>
     );

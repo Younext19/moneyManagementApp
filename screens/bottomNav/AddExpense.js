@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import moment from 'moment';
 
 import images from '../images';
 
@@ -49,12 +50,10 @@ export default function AddExpense() {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: selectedCateg === item.categ ? '#78e08f' : 'white',
+            backgroundColor:
+              selectedCateg.categ === item.categ ? '#78e08f' : 'white',
           }}
           onPress={() => {
-            console.log('zebi');
-            console.log(item);
-            console.log({imgName: item.imgName, categ: item.categ});
             setselectedCateg({imgName: item.imgName, categ: item.categ});
           }}>
           <Text style={{fontSize: 20}}>{item.categ}</Text>
@@ -228,7 +227,7 @@ export default function AddExpense() {
                   Title: Title,
                   Budget: Budget,
                   Category: selectedCateg,
-
+                  Date: moment().format('lll'),
                   Type: selectedType,
                 };
                 console.log(Data);
