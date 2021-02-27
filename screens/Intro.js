@@ -16,9 +16,9 @@ export default function intro() {
   const [EditBirthDate, setEditBirthDate] = useState(false);
   console.log(DateOfBirth);
   const [maximumDate, setmaximumDate] = useState(new Date());
+  const [NameError, setNameError] = useState(false);
   const [FullName, setFullName] = useState('');
   const [avatarImage, setavatarImage] = useState('');
-  const [MonthlyIncome, setMonthlyIncome] = useState('');
   const navigations = useNavigation();
   const Darkest = Colors.DarkestColor;
   const Darker = Colors.DarkerColor;
@@ -87,7 +87,7 @@ export default function intro() {
               />
             </View>
           ) : (
-            <View>
+            <View style={{alignItems: 'center'}}>
               <Image
                 source={require('../Assets/bottomNavBarIcons/profile.png')}
                 style={{
@@ -97,6 +97,14 @@ export default function intro() {
                   alignSelf: 'center',
                 }}
               />
+              <Text
+                style={{
+                  fontSize: 17,
+                  padding: 4,
+                  fontWeight: 'bold',
+                }}>
+                Upload Image
+              </Text>
             </View>
           )}
         </View>
@@ -106,7 +114,7 @@ export default function intro() {
           width: '100%',
           flexDirection: 'column',
           justifyContent: 'center',
-          marginTop: 20,
+          marginTop: 40,
         }}>
         <Text style={{color: 'white', fontSize: 17}}>Nom et Prénom :</Text>
         <TextInput
@@ -121,27 +129,17 @@ export default function intro() {
           placeholder={'HADDAM Younes'}
           onChangeText={(value) => setFullName(value)}
         />
+        {NameError ? (
+          <View>
+            <Text style={{fontSize: 16, color: 'red'}}>
+              Please Enter Your Name !
+            </Text>
+          </View>
+        ) : (
+          <View />
+        )}
       </View>
-      <View
-        style={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-          width: '100%',
-          marginTop: 10,
-        }}>
-        <Text style={{color: 'white', fontSize: 17}}>Salaire ( Mois ): </Text>
-        <TextInput
-          style={{
-            borderColor: White,
-            borderBottomWidth: 1,
-            width: '100%',
-            height: 50,
-          }}
-          placeholder="35000 $"
-          placeholderTextColor={'grey'}
-          onChangeText={(value) => setMonthlyIncome(value)}
-        />
-      </View>
+
       <View
         style={{
           flexDirection: 'column',
@@ -200,18 +198,21 @@ export default function intro() {
             backgroundColor: Green,
           }}
           onPress={() => {
-            console.log('tes');
-            const Data = {
-              BirthDate: DateOfBirth,
-              monthSalary: MonthlyIncome,
-              fullName: FullName,
-            };
+            if (FullName === '') {
+              setNameError(true);
+            } else {
+              const Data = {
+                BirthDate: DateOfBirth,
+                fullName: FullName,
+                ImgUser: avatarImage,
+              };
 
-            dispatch({
-              type: SAVESIGNUP,
-              signupData: Data,
-            });
-            navigations.push('Main');
+              dispatch({
+                type: SAVESIGNUP,
+                signupData: Data,
+              });
+              navigations.push('Main');
+            }
           }}>
           <View style={{alignItems: 'center'}}>
             <View style={{flexDirection: 'row'}}>

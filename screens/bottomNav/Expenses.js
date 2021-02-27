@@ -87,9 +87,10 @@ export default function expenses() {
   const navigation = useNavigation();
 
   const state = useSelector((state) => state.DataReducer);
-  console.log('Data Reducer');
-  console.log(state);
+  let UserData = state.UserData;
 
+  console.log('user data');
+  console.log(UserData);
   const [filterBy, setfilterBy] = useState('Expenses');
   const HorizontList = ({item}) => {
     return (
@@ -192,7 +193,7 @@ export default function expenses() {
                   </View>
                   <Text
                     style={{marginLeft: 10, fontWeight: 'bold', fontSize: 20}}>
-                    Ilies
+                    {UserData.fullName}
                   </Text>
                 </View>
                 <Text
