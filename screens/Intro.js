@@ -20,10 +20,7 @@ export default function intro() {
   const [FullName, setFullName] = useState('');
   const [avatarImage, setavatarImage] = useState('');
   const navigations = useNavigation();
-  const Darkest = Colors.DarkestColor;
-  const Darker = Colors.DarkerColor;
-  const Green = Colors.GreenColor;
-  const White = Colors.WhiteColor;
+
   function uploadImage() {
     launchCamera(
       {
@@ -47,14 +44,24 @@ export default function intro() {
     <View
       style={{
         alignItems: 'center',
-        backgroundColor: Darker,
+        backgroundColor: '#ece2e1',
         flex: 1,
         padding: 50,
         justifyContent: 'center',
       }}>
       <View
         style={{
-          backgroundColor: Darkest,
+          backgroundColor: '#564654',
+          height: '55%',
+          width: '110%',
+          position: 'absolute',
+          borderRadius: 450 / 2,
+          top: 600,
+          right: -120,
+        }}></View>
+      <View
+        style={{
+          backgroundColor: '#564654',
           height: '55%',
           width: '110%',
           position: 'absolute',
@@ -62,6 +69,17 @@ export default function intro() {
           top: -170,
           right: -100,
         }}></View>
+      <View
+        style={{
+          backgroundColor: '#564654',
+          height: '55%',
+          width: '110%',
+          position: 'absolute',
+          borderRadius: 450 / 2,
+          top: 170,
+          right: 370,
+        }}></View>
+
       <TouchableOpacity
         onPress={() => {
           uploadImage();
@@ -116,14 +134,30 @@ export default function intro() {
           justifyContent: 'center',
           marginTop: 40,
         }}>
-        <Text style={{color: 'white', fontSize: 17}}>Nom et Prénom :</Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 17,
+            color: 'black',
+          }}>
+          Nom et Prénom :
+        </Text>
         <TextInput
           style={{
             width: '100%',
             height: 50,
-            borderColor: White,
-            borderBottomWidth: 1,
-            color: 'white',
+            borderRadius: 4,
+            padding: 10,
+            color: 'black',
+            paddingBottom: 5,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 4,
+            },
+            shadowOpacity: 0.32,
+            shadowRadius: 6,
+            elevation: 4,
           }}
           placeholderTextColor={'grey'}
           placeholder={'HADDAM Younes'}
@@ -147,16 +181,20 @@ export default function intro() {
           width: '100%',
           marginTop: 10,
         }}>
-        <Text style={{color: 'white', fontSize: 17}}>Date De Naissance</Text>
+        <Text style={{color: 'black', fontSize: 17}}>Date De Naissance : </Text>
         <View style={{alignItems: 'center', width: '100%', marginTop: 5}}>
           {EditBirthDate ? (
-            <View style={{width: '100%', flexDirection: 'row'}}>
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+              }}>
               <DatePicker
                 style={{height: 100, width: 250}}
                 date={DateOfBirth}
                 onDateChange={setDateOfBirth}
                 mode="date"
-                textColor="white"
+                textColor="black"
                 fadeToColor="gray"
                 maximumDate={maximumDate}
               />
@@ -169,15 +207,34 @@ export default function intro() {
               </TouchableOpacity>
             </View>
           ) : (
-            <View style={{width: '100%'}}>
+            <View
+              style={{
+                width: '100%',
+              }}>
               <TouchableOpacity
                 onPress={() => setEditBirthDate(true)}
-                style={{borderBottomWidth: 1, borderColor: White}}>
+                style={{
+                  width: '100%',
+                  height: 50,
+                  borderRadius: 4,
+                  padding: 10,
+                  color: 'black',
+                  paddingBottom: 5,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 4,
+                  },
+                  shadowOpacity: 0.32,
+                  shadowRadius: 5.46,
+                  elevation: 4,
+                }}>
                 <View>
                   <Text
                     style={{
                       color: 'grey',
-                      fontSize: 17,
+                      fontSize: 16,
+                      marginTop: 5,
                     }}>
                     {moment(DateOfBirth).format('DD MMMM YYYY')}
                   </Text>
@@ -191,11 +248,11 @@ export default function intro() {
       <View style={{marginTop: 20}}>
         <TouchableOpacity
           style={{
-            width: 300,
+            width: 310,
             height: 40,
             justifyContent: 'center',
-            borderRadius: 10,
-            backgroundColor: Green,
+            borderRadius: 2,
+            backgroundColor: '#6f9eaf',
           }}
           onPress={() => {
             if (FullName === '') {
