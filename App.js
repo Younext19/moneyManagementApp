@@ -14,8 +14,6 @@ const App = () => {
   // TO CHANGE INTRO TO BOTTOM NAV BAR
   return (
     <Provider store={store}>
-
-      
       <PersistGate persistor={persistedStore} loading={null}>
         <NavigationContainer>
           <Stack.Navigator>
